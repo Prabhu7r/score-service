@@ -1,0 +1,17 @@
+services:
+  scoresdb:
+    image: 'mongo:latest'
+    container_name: "scoresdb"
+    #environment:
+    #  - 'MONGO_INITDB_DATABASE=highscores'
+    #  - 'MONGO_INITDB_ROOT_PASSWORD=secret'
+    # - 'MONGO_INITDB_ROOT_USERNAME=root'
+    ports:
+      - 27017:27017
+  score-service:
+    image: score-service:latest
+    container_name: "score-service"
+    ports:
+      - 9091:8080
+    links:
+      - scoresdb
